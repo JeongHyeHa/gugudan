@@ -1,3 +1,4 @@
+#사용자가 입력한 값 검토: 1보다 큰 정수(o)
 def input_check(str):
     while True:
         user_input = input(f"{str}를 입력하세요: ")
@@ -8,7 +9,7 @@ def input_check(str):
                 continue
             return num
         except ValueError:
-            print("유효한 숫자를 입력해주세요. 양의 정수만 입력할 수 있습니다.\n")
+            print("잘못된 입력입니다. 양의 10진수 정수를 입력하세요 (예: 1, 2, 3, ...)\n")
 
             
 
@@ -17,12 +18,10 @@ while True:
     stage = input_check("최대 출력할 단 수")
 
     if row > stage:
-        print("최대 출력할 단 수는 한 행에 출력할 개수보다 커야 합니다.")
-        print("구구단을 다시 시작합니다.\n")
+        print("최대 출력할 단 수는 한 행에 출력할 개수보다 커야 합니다.\n")
+        print("구구단을 다시 시작합니다.")
         continue
     
-    print(f"{stage}단까지 구구단을 {row}개씩 한 행에 출력합니다:\n")
-
     for start in range(1, stage+1, row):   
         end = min(start+row, stage+1)
         for i in range(1,10):
