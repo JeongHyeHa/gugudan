@@ -1,11 +1,14 @@
 #사용자가 입력한 값 검토: 1보다 큰 정수(o)
-def input_check(str):
+def input_check(str, max):
     while True:
-        user_input = input(f"{str}를 입력하세요: ")
+        user_input = input(f"{str}를 입력하세요(~{max}): ")
         try:
             num = int(user_input)
             if num <= 0:
                 print(f"{str}가 1보다 작아서 실행이 불가능합니다.\n")
+                continue
+            if num>max:
+                print(f"값을 초과하셨습니다. 1~{max} 중 원하는 값을 택해주세요.\n")
                 continue
             return num
         except ValueError:
@@ -14,19 +17,19 @@ def input_check(str):
             
 
 while True:
-    row = input_check("한 행에 출력할 구구단의 개수")
-    stage = input_check("최대 출력할 단 수")
+    row = input_check("한 행에 출력할 구구단의 개수", 10)
+    stage = input_check("최대 출력할 단 수", 1000)
 
     if row > stage:
-        print("최대 출력할 단 수는 한 행에 출력할 개수보다 커야 합니다.\n")
-        print("구구단을 다시 시작합니다.")
+        print("최대 출력할 단 수는 한 행에 출력할 개수보다 커야 합니다.")
+        print("구구단을 다시 시작합니다.\n")
         continue
     
     for start in range(1, stage+1, row):   
         end = min(start+row, stage+1)
         for i in range(1,10):
             for j in range(start, end):
-                print(f"{j} x {i} = {j*i:2}", end="\t")
+                print(f"{j} x {i} = {j*i}", end="\t")
             print("")
         print("")
     break
